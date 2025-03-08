@@ -4,13 +4,14 @@
   --clr-Grey: hsl(231, 7%, 60%);
   --clr-Charcoal-Grey: hsl(235, 18%, 26%);
   --clr-Dark-Slate-Grey: hsl(234, 29%, 20%);
-  --clr-background: hsl(0, 0%, 100%);
+  --clr-background: #36384d;
+  --clr-vermilion: #ff6155;
 
   /* Font Family */
   --ff: "Roboto", sans-serif;
 
   /* Font Size */
-  --fs-title-desktop: 3.5rem;
+  --fs-title-desktop: 3.9rem;
   --fs-title-phone: 2.5rem;
   --fs-text: 1rem;
   --fs-label: 0.625rem;
@@ -83,8 +84,18 @@ form {
 form .labels {
   display: flex;
   justify-content: space-between;
-  font-size: var(--fs-label);
+  font-size: var(--fs-text);
   font-weight: var(--fw-bold);
+}
+
+form .labels .error {
+  color: var(--Vermellion, #ff6155);
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
+}
+
+form .input_button .error + .labels .error {
+  opacity: 1;
 }
 
 form .labels span {
@@ -104,6 +115,17 @@ input {
 
 input::placeholder {
   opacity: 0.5;
+}
+
+/* error styling input */
+
+input.error {
+  border: 1px solid var(--Vermellion, #ff6155);
+  background: rgba(255, 97, 85, 0.15);
+}
+
+input.error::placeholder {
+  color: var(--Vermellion, #ff6155);
 }
 
 button {
@@ -158,13 +180,44 @@ button:hover {
   font-weight: var(--fw-bold);
 }
 
-/* error styling */
+@media (min-width: 40rem) {
+  body {
+    display: flex;
+    background: var(--clr-background);
+    justify-content: center;
+    align-items: center;
+  }
 
-input.error {
-  border: 1px solid var(--Vermellion, #ff6155);
-  background: rgba(255, 97, 85, 0.15);
-}
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: #fff;
+    padding: var(--spacing-300);
+    border-radius: 36px;
+  }
 
-input.error::placeholder {
-  color: var(--Vermellion, #ff6155);
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  .container.hidden {
+    display: none;
+  }
+
+  .success_container {
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* align-content: center; */
+    max-width: 37rem;
+    border-radius: 36px;
+    background: #fff;
+    box-shadow: 0px 15px 60px 0px rgba(0, 0, 0, 0.25);
+    flex-flow: column wrap;
+    background: #fff;
+    height: auto;
+  }
+
+  .success_container .success_content {
+    align-items: center;
+  }
 }
